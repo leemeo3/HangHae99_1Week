@@ -82,8 +82,8 @@ for coffee in coffees:
     print()
 
     doc = {
-        "coffee_id" : i,
         "cafe": "ediya",
+        "coffee_id": i,
         "coffee_name": name,
         "coffee_image": img_src,
         "coffee_desc": desc,
@@ -99,41 +99,44 @@ for coffee in coffees:
 # 커피 종료
 
 # 논 커피 시작
-data = requests.get('https://ediya.com/contents/drink.html?chked_val=13,&skeyword=#blockcate', headers=headers)
-soup = BeautifulSoup(data.text, 'html.parser')
-coffees = soup.select('#menu_ul > li')
-for coffee in coffees:
-    i += 1
-    name = coffee.select_one('div.menu_tt > a:nth-child(1) > span').text
-    img = coffee.select_one('li > a > img')
-    img_src = "https://ediya.com/" + img.get("src")
-    desc = coffee.select_one('div.pro_detail > div.detail_con > p').text
-    calorie = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl > dd').text.replace("(","").replace(")","")
-    sugar = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(2) > dd').text.replace("(","").replace(")","")
-    protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace("(","").replace(")","")
-    protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace(
-        "(", "").replace(")", "")
-    fat = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(4) > dd').text.replace(
-        "(", "").replace(")", "")
-    salt = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(5) > dd').text.replace(
-        "(", "").replace(")", "")
-    caffeine = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(6) > dd').text.replace(
-        "(", "").replace(")", "")
+nn = 13 # 논커피 시작 번호
+for j in range(0, 4):
+    n = str(nn)
+    print(n)
+    result = 'https://ediya.com/contents/drink.html?chked_val=' + n + ',&skeyword=#blockcate'
+    nn += 1
+    data = requests.get(result, headers=headers)
+    soup = BeautifulSoup(data.text, 'html.parser')
+    coffees = soup.select('#menu_ul > li')
+    for coffee in coffees:
+        i += 1
+        name = coffee.select_one('div.menu_tt > a:nth-child(1) > span').text
+        img = coffee.select_one('li > a > img')
+        img_src = "https://ediya.com/" + img.get("src")
+        desc = coffee.select_one('div.pro_detail > div.detail_con > p').text
+        calorie = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl > dd').text.replace("(","").replace(")","")
+        sugar = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(2) > dd').text.replace("(","").replace(")", "")
+        protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace("(", "").replace(")", "")
+        protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace("(", "").replace(")", "")
+        fat = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(4) > dd').text.replace("(", "").replace(")", "")
+        salt = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(5) > dd').text.replace("(", "").replace(")", "")
+        caffeine = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(6) > dd').text.replace("(", "").replace(")", "")
 
-    print(name)
-    print("https://ediya.com/" + img_src)
-    print("설명 : " + desc)
-    print("칼로리 " + calorie)
-    print("당류 " + sugar)
-    print("단백질 " + protein)
-    print("지방 " + fat)
-    print("나트륨 " + salt)
-    print("카페인 " + caffeine)
-    print()
+        print(name)
+        print(i)
+        print("https://ediya.com/" + img_src)
+        print("설명 : " + desc)
+        print("칼로리 " + calorie)
+        print("당류 " + sugar)
+        print("단백질 " + protein)
+        print("지방 " + fat)
+        print("나트륨 " + salt)
+        print("카페인 " + caffeine)
+        print()
 
     doc = {
+        "coffee_id" : i,
         "cafe": "ediya",
-        "coffee_id": i,
         "coffee_name": name,
         "coffee_image": img_src,
         "coffee_desc": desc,
@@ -146,151 +149,9 @@ for coffee in coffees:
         "caffeine": caffeine
     }
     db.coffee.insert_one(doc)
+# 논 커피 종료
 
-data = requests.get('https://ediya.com/contents/drink.html?chked_val=14,&skeyword=#blockcate', headers=headers)
-soup = BeautifulSoup(data.text, 'html.parser')
-coffees = soup.select('#menu_ul > li')
-for coffee in coffees:
-    i += 1
-    name = coffee.select_one('div.menu_tt > a:nth-child(1) > span').text
-    img = coffee.select_one('li > a > img')
-    img_src = "https://ediya.com/" + img.get("src")
-    desc = coffee.select_one('div.pro_detail > div.detail_con > p').text
-    calorie = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl > dd').text.replace("(","").replace(")","")
-    sugar = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(2) > dd').text.replace("(","").replace(")","")
-    protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace("(","").replace(")","")
-    protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace(
-        "(", "").replace(")", "")
-    fat = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(4) > dd').text.replace(
-        "(", "").replace(")", "")
-    salt = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(5) > dd').text.replace(
-        "(", "").replace(")", "")
-    caffeine = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(6) > dd').text.replace(
-        "(", "").replace(")", "")
-
-    print(name)
-    print("https://ediya.com/" + img_src)
-    print("설명 : " + desc)
-    print("칼로리 " + calorie)
-    print("당류 " + sugar)
-    print("단백질 " + protein)
-    print("지방 " + fat)
-    print("나트륨 " + salt)
-    print("카페인 " + caffeine)
-    print()
-
-    doc = {
-        "cafe": "ediya",
-        "coffee_id": i,
-        "coffee_name": name,
-        "coffee_image": img_src,
-        "coffee_desc": desc,
-        "type": "non-coffee",
-        "calorie": calorie,
-        "salt": salt,
-        "saturated_fat": fat,
-        "sugars": sugar,
-        "protein": protein,
-        "caffeine": caffeine
-    }
-    db.coffee.insert_one(doc)
-
-data = requests.get('https://ediya.com/contents/drink.html?chked_val=15,&skeyword=#blockcate', headers=headers)
-soup = BeautifulSoup(data.text, 'html.parser')
-coffees = soup.select('#menu_ul > li')
-for coffee in coffees:
-    i += 1
-    name = coffee.select_one('div.menu_tt > a:nth-child(1) > span').text
-    img = coffee.select_one('li > a > img')
-    img_src = "https://ediya.com/" + img.get("src")
-    desc = coffee.select_one('div.pro_detail > div.detail_con > p').text
-    calorie = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl > dd').text.replace("(","").replace(")","")
-    sugar = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(2) > dd').text.replace("(","").replace(")","")
-    protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace("(","").replace(")","")
-    protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace(
-        "(", "").replace(")", "")
-    fat = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(4) > dd').text.replace(
-        "(", "").replace(")", "")
-    salt = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(5) > dd').text.replace(
-        "(", "").replace(")", "")
-    caffeine = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(6) > dd').text.replace(
-        "(", "").replace(")", "")
-
-    print(name)
-    print("https://ediya.com/" + img_src)
-    print("설명 : " + desc)
-    print("칼로리 " + calorie)
-    print("당류 " + sugar)
-    print("단백질 " + protein)
-    print("지방 " + fat)
-    print("나트륨 " + salt)
-    print("카페인 " + caffeine)
-    print()
-
-    doc = {
-        "cafe": "ediya",
-        "coffee_id": i,
-        "coffee_name": name,
-        "coffee_image": img_src,
-        "coffee_desc": desc,
-        "type": "non-coffee",
-        "calorie": calorie,
-        "salt": salt,
-        "saturated_fat": fat,
-        "sugars": sugar,
-        "protein": protein,
-        "caffeine": caffeine
-    }
-    db.coffee.insert_one(doc)
-
-data = requests.get('https://ediya.com/contents/drink.html?chked_val=16,&skeyword=#blockcate', headers=headers)
-soup = BeautifulSoup(data.text, 'html.parser')
-coffees = soup.select('#menu_ul > li')
-for coffee in coffees:
-    i += 1
-    name = coffee.select_one('div.menu_tt > a:nth-child(1) > span').text
-    img = coffee.select_one('li > a > img')
-    img_src = "https://ediya.com/" + img.get("src")
-    desc = coffee.select_one('div.pro_detail > div.detail_con > p').text
-    calorie = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl > dd').text.replace("(","").replace(")","")
-    sugar = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(2) > dd').text.replace("(","").replace(")","")
-    protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace("(","").replace(")","")
-    protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace(
-        "(", "").replace(")", "")
-    fat = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(4) > dd').text.replace(
-        "(", "").replace(")", "")
-    salt = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(5) > dd').text.replace(
-        "(", "").replace(")", "")
-    caffeine = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(6) > dd').text.replace(
-        "(", "").replace(")", "")
-
-    print(name)
-    print("https://ediya.com/" + img_src)
-    print("설명 : " + desc)
-    print("칼로리 " + calorie)
-    print("당류 " + sugar)
-    print("단백질 " + protein)
-    print("지방 " + fat)
-    print("나트륨 " + salt)
-    print("카페인 " + caffeine)
-    print()
-
-    doc = {
-        "cafe": "ediya",
-        "coffee_id": i,
-        "coffee_name": name,
-        "coffee_image": img_src,
-        "coffee_desc": desc,
-        "type": "non-coffee",
-        "calorie": calorie,
-        "salt": salt,
-        "saturated_fat": fat,
-        "sugars": sugar,
-        "protein": protein,
-        "caffeine": caffeine
-    }
-    db.coffee.insert_one(doc)
-
+# 시즌 메뉴 시작
 data = requests.get('https://ediya.com/contents/drink.html?chked_val=132,&skeyword=#blockcate', headers=headers)
 soup = BeautifulSoup(data.text, 'html.parser')
 coffees = soup.select('#menu_ul > li')
@@ -313,6 +174,7 @@ for coffee in coffees:
         "(", "").replace(")", "")
 
     print(name)
+    print(i)
     print("https://ediya.com/" + img_src)
     print("설명 : " + desc)
     print("칼로리 " + calorie)
@@ -338,4 +200,4 @@ for coffee in coffees:
         "caffeine": caffeine
     }
     db.coffee.insert_one(doc)
-# 논커피 종료
+# 시즌 메뉴 종료
