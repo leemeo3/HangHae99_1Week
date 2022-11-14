@@ -56,7 +56,7 @@ for coffee in coffees:
     i += 1
     name = coffee.select_one('div.menu_tt > a:nth-child(1) > span').text
     img = coffee.select_one('li > a > img')
-    img_src = "https://ediya.com/" + img.get("src")
+    img_src = "https://ediya.com" + img.get("src")
     desc = coffee.select_one('div.pro_detail > div.detail_con > p').text
     calorie = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl > dd').text.replace("(","").replace(")","")
     sugar = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(2) > dd').text.replace("(","").replace(")","")
@@ -71,7 +71,7 @@ for coffee in coffees:
         "(", "").replace(")", "")
 
     print(name)
-    print("https://ediya.com/" + img_src)
+    print(img_src)
     print("설명 : " + desc)
     print("칼로리 " + calorie)
     print("당류 " + sugar)
@@ -112,7 +112,7 @@ for j in range(0, 4):
         i += 1
         name = coffee.select_one('div.menu_tt > a:nth-child(1) > span').text
         img = coffee.select_one('li > a > img')
-        img_src = "https://ediya.com/" + img.get("src")
+        img_src = "https://ediya.com" + img.get("src")
         desc = coffee.select_one('div.pro_detail > div.detail_con > p').text
         calorie = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl > dd').text.replace("(","").replace(")","")
         sugar = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(2) > dd').text.replace("(","").replace(")", "")
@@ -124,7 +124,7 @@ for j in range(0, 4):
 
         print(name)
         print(i)
-        print("https://ediya.com/" + img_src)
+        print(img_src)
         print("설명 : " + desc)
         print("칼로리 " + calorie)
         print("당류 " + sugar)
@@ -159,7 +159,7 @@ for coffee in coffees:
     i += 1
     name = coffee.select_one('div.menu_tt > a:nth-child(1) > span').text
     img = coffee.select_one('li > a > img')
-    img_src = "https://ediya.com/" + img.get("src")
+    img_src = "https://ediya.com" + img.get("src")
     desc = coffee.select_one('div.pro_detail > div.detail_con > p').text
     calorie = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl > dd').text.replace("(","").replace(")","")
     sugar = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(2) > dd').text.replace("(","").replace(")","")
@@ -175,7 +175,7 @@ for coffee in coffees:
 
     print(name)
     print(i)
-    print("https://ediya.com/" + img_src)
+    print(img_src)
     print("설명 : " + desc)
     print("칼로리 " + calorie)
     print("당류 " + sugar)
