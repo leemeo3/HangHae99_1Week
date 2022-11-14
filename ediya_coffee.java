@@ -20,6 +20,8 @@ coffees = soup.select('#menu_ul > li')
 
 for coffee in coffees:
     name = coffee.select_one('div.menu_tt > a:nth-child(1) > span').text
+    img = coffee.select_one('li > a > img')
+    img_src = img.get("src")
     calorie = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl > dd').text.replace("(","").replace(")","")
     sugar = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(2) > dd').text.replace("(","").replace(")","")
     protein = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(3) > dd').text.replace("(","").replace(")","")
@@ -32,6 +34,7 @@ for coffee in coffees:
     caffeine = coffee.select_one('div.pro_detail > div.pro_comp > div.pro_nutri > dl:nth-child(6) > dd').text.replace(
         "(", "").replace(")", "")
     print(name)
+    print("https://ediya.com/" + img_src)
     print("칼로리 " + calorie)
     print("당류 " + sugar)
     print("단백질 " + protein)
