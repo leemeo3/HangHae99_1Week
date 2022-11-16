@@ -200,4 +200,5 @@ for coffee in coffees:
         "caffeine": caffeine
     }
     db.coffee.insert_one(doc)
+# 테스트
 # 시즌 메뉴 종료
